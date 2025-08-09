@@ -1,0 +1,32 @@
+name: Checkup Code
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup node from .nvmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+          corepack: true
+
+      - run: pnpm install
+
+      - name: Run tests
+      - run: pnpm test
+
+      - name: Typecheck
+      - run: pnpm typecheck
+
+      - name: Build application
+      - run: pnpm build
