@@ -1,17 +1,24 @@
-import {render, fireEvent, screen} from '@testing-library/vue'
-import { test } from 'vitest'
+import { render, fireEvent } from "@testing-library/vue";
+import { describe, it } from "vitest";
 
-import HelloWorld from './HelloWorld.vue'
+import HelloWorld from "./HelloWorld.vue";
 
-test('increments value on click', async () => {
-  const screen = render(HelloWorld)
+describe("HelloWorld", () => {
+  it("renders component", async () => {
+    const screen = render(HelloWorld);
 
-  screen.getByText('Contagem:')
+    screen.getByText("Contagem: 0");
 
-  const button = screen.getByText('Somar')
+    const sumButton = screen.getByText("Somar");
+    const decreaseButton = screen.getByText("Diminuir");
 
-  await fireEvent.click(button)
-  await fireEvent.click(button)
+    await fireEvent.click(sumButton);
+    await fireEvent.click(sumButton);
 
-  screen.getByText('Count is: 2')
-})
+    screen.getByText("Contagem: 2");
+
+    await fireEvent.click(decreaseButton);
+
+    screen.getByText("Contagem: 1");
+  });
+});
