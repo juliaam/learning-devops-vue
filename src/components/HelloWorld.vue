@@ -5,7 +5,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1>Componente puramente visual para teste unitário de UI</h1>
+  <h1>Componente teste</h1>
   <div class="buttonContainer">
     <button class="button" @click="count--">Diminuir</button>
     <button class="button" @click="count++">Somar</button>
