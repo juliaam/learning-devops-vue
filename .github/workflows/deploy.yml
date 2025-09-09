@@ -22,8 +22,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu/app/learning-devops
-            git pull
-            docker build -t minha-aplicacao .
+            git fetch --all
+            git reset --hard origin/main
             docker stop minha-aplicacao || true
             docker rm minha-aplicacao || true
+            docker rmi minha-aplicacao || true
+            docker build --no-cache -t minha-aplicacao .
             docker run -d --name minha-aplicacao -p 80:80 minha-aplicacao
