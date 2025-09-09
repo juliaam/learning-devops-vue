@@ -9,7 +9,6 @@ const count = ref(0)
   <div class="buttonContainer">
     <button class="button" @click="count--">Diminuir</button>
     <button class="button" @click="count++">Somar</button>
-    <span>a</span>
   </div>
   <p class="count">Contagem: {{ count }}</p>
 </template>
